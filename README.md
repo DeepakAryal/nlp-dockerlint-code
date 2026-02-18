@@ -65,6 +65,33 @@ nlp-dockerlint/
 - **CodeBERT**: Pre-trained on code, optimized for programming language understanding
 - **RoBERTa**: General-purpose language model baseline
 
+## Pre-trained Models
+
+All trained models are available on Hugging Face. You can download them to skip training and directly run inference or evaluation.
+
+| Model | Task | Hugging Face |
+|-------|------|--------------|
+| CodeBERT | Misconfiguration Detection (Binary) | [deepakaryal/codebert-dockerfile-misconfig-detection](https://huggingface.co/deepakaryal/codebert-dockerfile-misconfig-detection) |
+| CodeBERT | Rule Classification (Multi-class) | [deepakaryal/codebert-dockerfile-rule-classification](https://huggingface.co/deepakaryal/codebert-dockerfile-rule-classification) |
+| RoBERTa | Misconfiguration Detection (Binary) | [deepakaryal/roberta-dockerfile-misconfig-detection](https://huggingface.co/deepakaryal/roberta-dockerfile-misconfig-detection) |
+| RoBERTa | Rule Classification (Multi-class) | [deepakaryal/roberta-dockerfile-rule-classification](https://huggingface.co/deepakaryal/roberta-dockerfile-rule-classification) |
+
+### Download Pre-trained Models
+
+```bash
+pip install huggingface_hub
+
+# CodeBERT models
+huggingface-cli download deepakaryal/codebert-dockerfile-misconfig-detection --local-dir models/stage1_codebert
+huggingface-cli download deepakaryal/codebert-dockerfile-rule-classification --local-dir models/stage2_codebert
+
+# RoBERTa models
+huggingface-cli download deepakaryal/roberta-dockerfile-misconfig-detection --local-dir models/stage1_roberta
+huggingface-cli download deepakaryal/roberta-dockerfile-rule-classification --local-dir models/stage2_roberta
+```
+
+After downloading, you can directly run inference (see [Inference](#5-inference)).
+
 ## Usage
 
 ### 1. Install Dependencies
@@ -94,6 +121,8 @@ python src/models/roberta/data-tokenization-stage2.py   # Stage 2 (multi-class)
 ```
 
 ### 3. Training
+
+> **Note:** If you downloaded the pre-trained models from Hugging Face, you can skip this step and go directly to [Performance Evaluation](#4-performance-evaluation) or [Inference](#5-inference).
 
 #### CodeBERT
 
