@@ -1,0 +1,6 @@
+# Large folders
+data/
+models/
+
+# Python
+__pycache__/
